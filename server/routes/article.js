@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const ArticleModel = require('../modules/articleModel');
+const ItemModel = require('../modules/itemModel');
 
 router.post('/', (req, res) => {
-    const Article = new ArticleModel();
+    const Item = new ItemModel();
 
-    Article.title = req.body.title;
-    Article.text = req.body.text;
+    Item.name = req.body.name;
+    Item.category = req.body.category;
+    Item.price = req.body.price;
 
-    Article.save(err => {
+    Item.save(err => {
         if (err) {
             res.send(err);
         } else {
@@ -18,23 +19,23 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res)=>{
-    ArticleModel
+    ItemModel
         .find()
-        .then(articles=>{
-            res.json(articles);
+        .then(items=>{
+            res.json(items);
         });
 });
 
 /*
 router.get('/', (req, res) => {
     res.json({
-        message: 'ここは/api/article/'
+        message: 'ここは/api/item/'
     })
 })
 
 router.get('/test', (req, res) => {
     res.json({
-        message: 'ここは/api/article/test/'
+        message: 'ここは/api/item/test/'
     })
 })
 */
