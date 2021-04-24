@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ItemModel = require('../modules/itemModel');
+const ItemModel = require('../models/itemModel');
 
 router.post('/', (req, res) => {
     const Item = new ItemModel();
@@ -26,13 +26,13 @@ router.get('/', (req, res)=>{
         });
 });
 
+//表示確認用
 /*
 router.get('/', (req, res) => {
     res.json({
         message: 'ここは/api/item/'
     })
 })
-
 router.get('/test', (req, res) => {
     res.json({
         message: 'ここは/api/item/test/'

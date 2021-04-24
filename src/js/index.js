@@ -2,20 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './app';
+//import App from './app';
 
 // 表示確認用
-/*
-fetch('/api/item').then(res => {
+fetch('/api/item/').then(res => {
     console.log(res.json());
-})
-
-const Root = () => {
+});
+const Index = () => {
     return <div>Hello,World!</div>
 }
-*/
+ReactDOM.render(<Index />, document.getElementById("index"));
 
 // ステート
+/*
 let iteState = {
     data: [
         {
@@ -61,10 +60,15 @@ export function itemFindReduce(state, action) {
 
 // ストア
 let itemStore = createStore(itemReducer);
+*/
 
 // レンダリングとProvider
+/*
 ReactDOM.render(
     <Provider store={itemStore}>
         <App />
     </Provider>,
-    document.getElementById('root'));
+    document.getElementById('index'));
+*/
+
+//表示確認用
