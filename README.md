@@ -1,5 +1,54 @@
 # MERNDevEnv1
 MERNスタック（MongoDB, Express, React, Node.js）開発環境の最小構成です。  
+状態管理にReduxを用いています。
+
+## Reduxについて
+### Reduxの流れ
+イベントが発生する（入力など）  
+イベントの処理中にdispatchを実行する。
+↓  
+アクションクリエイターに値が渡されて、アクションのオブジェクトを返す  
+↓  
+dispatchしたことでレデューサーが呼び出され、ステートと先ほどのアクションオブエジェクトを引数にして実行し、ステートを変更する。  
+↓  
+ステートが変更されたことにより、コンポーネントが再描画される。  
+
+### Reduxに必要なもの
+https://docs.google.com/spreadsheets/d/1xPQ7nLVP4uDpM4nJe9GhTpDhra0xzWnK42NK52oi51o/edit#gid=274878124&range=A59  
+- ストア
+    - レデューサー
+    - ステート
+- プロバイダー
+- アクションクリエイター
+- ディスパッチ（React内でアクションクリエイターを引数にして実行）
+
+参考：  
+https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7  
+
+
+## 各フォルダとファイルの説明
+1. /docs
+本番公開用。`npm run build`でdocs用にファイルを生成する。
+2. /server
+Expressサーバー。バックエンド部分を担当する。次の業務を担当する。
+- MongoDBへの接続設定。/server/models/itemModels.jsとMongooseで連携。
+- ルーティング。/server/routes/内のファイルがルーターとなる。
+- バックエンドExpressサーバー。ポートは3000番。
+- 以上の内容はserver.jsに集約される事になる
+3. /server/models
+- DB（MySQLなど）のテーブルの作成に相当する。module exportsで全体で扱えるようにして/server/routes/内のファイル（例としてitem.js）からmodule exportsされたモデルを利用してMongoDBへの読み書き（postやget）を行う。
+4. /server/routes
+- ルーター。ルーティングによるURL生成とCRUD部分を担う。
+5. /src
+フロントエンド部分を担当する。HTMLやSass、React、Redux（状態管理）はここで行う。
+6. /src/html
+webpackの「html-webpack-plugin」によって/docsにファイルが生成される  
+/docs/index.htmlなどを編集したい場合はここから変更を行う。  
+7. /src/js
+React、Reduxを担当する。  
+バックエンドからDB（API？）をfetchなどで読み書きを行う。  
+
+
 
 ## 使い方
 1. npm scriptsの`npm run dev`で開発環境が走る。
@@ -35,3 +84,9 @@ MERNスタック（MongoDB, Express, React, Node.js）開発環境の最小構�
 
 ## 参考元
 https://docs.google.com/spreadsheets/d/1xPQ7nLVP4uDpM4nJe9GhTpDhra0xzWnK42NK52oi51o/edit#gid=1511416112  
+https://qiita.com/ohs30359-nobuhara/items/bdc06b2db1bef7af2439  〜lintの導入まで
+https://qiita.com/ngmr_mo/items/73cc7160d002a4989416#api%E3%82%92%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%A7%E5%88%86%E3%81%91%E3%81%A6%E7%B6%BA%E9%BA%97%E3%81%AB%E3%81%99%E3%82%8B  ページ内リンク先以降
+
+
+## プロジェクト別
+`//プロジェクトに合わせて変更する。`という箇所を変更する。

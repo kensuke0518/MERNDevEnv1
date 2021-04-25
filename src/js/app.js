@@ -2,24 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { itemFindReduce } from './index';
 
-class App extends React.Component{
-    render() {
-        <div>
-            <Search />
-            <Itemlist />
-        </div>
-    }
-}
-
 class Search extends React.Component {
     constructor(props) {
         super(props);
     }
-    doAction() {
-        
-    }
     render() {
-        <input type="text" />
+        return <input type="text" />
     }
 }
 
@@ -30,7 +18,22 @@ class Itemlist extends React.Component {
 }
 Itemlist = connect(state => state)(Itemlist);
 
+export class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <Search />
+                <Itemlist />
+            </div>
+        );
+    }
+}
+//表示確認用
+/*
+export class App extends React.Component {
+    render() {
+        return <div>aaa</div>
+    }
+}
+*/
 
-
-
-export default App;
