@@ -5,7 +5,8 @@ const moment = require('moment');
 //プロジェクトに合わせて変更する。
 const ItemSchema = new Schema({
     comment: String,
-    time: Number
+    number: Number,
+    time: Number,
 });
 
 // スキーマをモデルとしてコンパイルし、それをモジュールとして扱えるようにする

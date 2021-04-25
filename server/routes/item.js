@@ -6,6 +6,7 @@ router.post('/', (req, res) => {
     const Item = new ItemModel();
     //プロジェクトに合わせて変更する。
     Item.comment = req.body.comment;
+    Item.number = req.body.number;
     Item.time = req.body.time;
 
     Item.save(err => {
