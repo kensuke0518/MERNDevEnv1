@@ -1,43 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { itemAddAction } from './index';
+import { createAction } from './index';
 
 //ステートのマッピング
 function mapStateToProps(state) {
     return state;
 }
 
-class Search extends React.Component {
+class Write extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            message:''
+            comment:''
         }
         this.doChange = this.doChange.bind(this);
         this.doAction = this.doAction.bind(this);
     }
     doChange(e) {
         this.setState({
-            message:e.target.value
+            comment:e.target.value
         });
     }
     doAction(e) {
         e.preventDefault();
-        this.props.dispatch(itemAddAction(this.state.message));
+        this.props.dispatch(createAction(this.state.comment));
         this.setState({
-            message: ''
+            comment: ''
         });
     }
     render() {
         return (
             <form onSubmit={this.doAction}>
-                <input type="text" onChange={this.doChange} value={this.state.message} />
+                <input type="text" onChange={this.doChange} value={this.state.comment} />
                 <input type="submit" value="追加" />
             </form>
         );
     }
 }
-Search = connect(mapStateToProps)(Search);
+Write = connect(mapStateToProps)(Write);
 
 class Itemlist extends React.Component {
     render() {
@@ -46,7 +46,7 @@ class Itemlist extends React.Component {
         //console.log(this.props.data)
         //console.log([...this.props.data])
         aaa = this.props.data.map(value => {
-            return <p key={ value.comment }>{ value.comment }</p>
+            return <p key={ value.id }>{ value.comment }</p>
         });
         return <div>{aaa}</div>
     }
@@ -57,7 +57,7 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                <Search />
+                <Write />
                 <Itemlist />
             </div>
         );

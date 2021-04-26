@@ -3,6 +3,7 @@ const router = express.Router();
 const ItemModel = require('../models/itemModel');
 
 router.post('/', (req, res) => {
+    console.log(req);
     const Item = new ItemModel();
     //プロジェクトに合わせて変更する。
     Item.comment = req.body.comment;

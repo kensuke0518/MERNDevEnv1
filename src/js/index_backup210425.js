@@ -35,7 +35,7 @@ let itemState = {
 }
 
 // レデューサー
-function itemReducer(state = itemState,action) { //actionって何？
+function mainReducer(state = itemState,action) { //actionって何？
     switch (action.type) {
         case 'find':
             return itemFindReduce(state,action)
@@ -61,11 +61,11 @@ export function itemFindReduce(state, action) {
 }
 
 // ストア
-let itemStore = createStore(itemReducer);
+let mainStore = createStore(mainReducer);
 
 // レンダリングとProvider
 ReactDOM.render(
-    <Provider store={itemStore}>
+    <Provider store={mainStore}>
         <App />,
     </Provider>,
     document.getElementById('index')
