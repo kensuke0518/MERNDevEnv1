@@ -15,19 +15,39 @@ MERNスタック（MongoDB, Express, React, Node.js）開発環境の最小構�
     - バックエンドExpressサーバー。
         - `server.js`が担う。ポートは3000番。
     <br>
-    
+
     1. `/server/models`
-        - DB（MySQLなど）のテーブルの作成に相当する。`module exports`で全体で扱えるようにして`/server/routes/`内のファイル（例として`item.js`）から`module exports`されたモデルを利用してMongoDBへの読み書き（`post`や`get`, `put`, `delete`）を行う。
+        - DB（MySQLなど）のテーブルの作成に相当する。  
+        `module exports`で全体で扱えるようにして`/server/routes/`内のファイル（例として`item.js`）から`module exports`されたモデルを利用してMongoDBへの読み書きを行えるように準備する。
     2. `/server/routes`
-        - ルーター。ルーティングによるURL生成とCRUD部分を担う。
+        - ルーティングによるURL生成とCRUD部分（`post（CREATE）`や`get（READ）`, `put（UPDATE）`, `delete（DELETE）`）を担う。ルーター。
 3. `/src`  
     フロントエンド部分を担当する。HTMLやSass、React、Redux（状態管理）はここで行う。
     1. `/src/html`
-    webpackの「`html-webpack-plugin`」によって`/docs`にファイルが生成される  
-    `/docs/index.html`などを編集したい場合はここから変更を行う。  
+        webpackの「`html-webpack-plugin`」によって`/docs`にファイルが生成される  
+        `/docs/index.html`などを編集したい場合はここから変更を行う。  
     2. `/src/js`
-    React、Reduxを担当する。  
-    バックエンドからDB（API？）をfetchなどで読み書きを行う。
+        React、Reduxを担当する。  
+        fetchなどでバックエンドからDB（API？）に読み書きを行う。  
+        1. `/src/js/components`
+            各コンポーネントを記述する。  
+            例として、よくある「フォーム入力」「データ表示」の2種類のコンポーネントを作成している。  
+            ※コンポーネントは最終的に`/src/js/App.js`に集約する。
+        2. `/src/js/redux`
+            Reduxに関する項目を記述している。  
+            アクションクリエイターは`actions.js`  
+            ストア（ステート、レデューサー）は`stores.js`  
+        3. `/src/js/App.js`
+            `/src/js/components`で記述したコンポーネントをまとめる  
+            まとめたコンポーネントは`index.js`にexportする
+        4. `/src/js/index.js`
+            レンダリングを行う。
+            レンダリングを行う際に、Reduxのプロバイダーを用いてストアをコンポーネントに送り、コンポーネントのpropsとして使えるようにする。
+
+## Componentsについて
+CSS in JSを採用したほうがいいかもしれない。  
+Sassに書くとJSでのコンポーネント採用した意味が薄れると思う。  
+コンポーネントを切り分けるのであれば、CSS in JSが妥当だと考える。  
 
 ## Reduxについて
 ### Reduxの流れ
