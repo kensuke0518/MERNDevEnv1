@@ -28,7 +28,9 @@ https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7
 
 ## 各フォルダとファイルの説明
 1. `/docs`  
-本番公開用。`npm run build`で`/docs`用にファイルを生成する。    
+本番公開用。`npm run build`で`/docs`用にファイルを生成する。
+
+
 2. `/server`  
     バックエンド部分を担当する。Expressサーバー。次の業務を担当する。
     - MongoDBへの接続設定。`/server/models/itemModels.js`とMongooseで連携。
