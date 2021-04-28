@@ -109,15 +109,24 @@ https://docs.google.com/spreadsheets/d/1xPQ7nLVP4uDpM4nJe9GhTpDhra0xzWnK42NK52oi
 https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7  
 
 
-## 参考元
-https://docs.google.com/spreadsheets/d/1xPQ7nLVP4uDpM4nJe9GhTpDhra0xzWnK42NK52oi51o/edit#gid=1511416112  
-https://qiita.com/ohs30359-nobuhara/items/bdc06b2db1bef7af2439  〜lintの導入まで
-https://qiita.com/ngmr_mo/items/73cc7160d002a4989416#api%E3%82%92%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%A7%E5%88%86%E3%81%91%E3%81%A6%E7%B6%BA%E9%BA%97%E3%81%AB%E3%81%99%E3%82%8B  ページ内リンク先以降
+## 更新時に気をつけたいこと
+- 差分のみを更新する
+Reactは、ステートを利用して、ステートに変更があれば、その差分のみを再描画することができる。 
 
 
 ## プロジェクト別
 
 
-## 更新時に気をつけたいこと
-- 差分のみを更新する
-Reactは、ステートを利用して、ステートに変更があれば、その差分のみを再描画することができる。 
+## 参考元
+- シンプルCRUDアプリ
+    - https://qiita.com/muijp/items/573247b12ff0bc4e5d3c
+
+- パッケージインストール〜環境構築
+    - https://qiita.com/ohs30359-nobuhara/items/bdc06b2db1bef7af2439  〜lintの導入まで
+    - https://qiita.com/ngmr_mo/items/73cc7160d002a4989416#api%E3%82%92%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E3%81%A7%E5%88%86%E3%81%91%E3%81%A6%E7%B6%BA%E9%BA%97%E3%81%AB%E3%81%99%E3%82%8B  ページ内リンク先以降
+
+- 導入方法について（自分のスプレッドシート）
+    - https://docs.google.com/spreadsheets/d/1xPQ7nLVP4uDpM4nJe9GhTpDhra0xzWnK42NK52oi51o/edit#gid=1511416112
+
+- その他
+    - https://qiita.com/kazmaw/items/a2def8978127ffb11f92
