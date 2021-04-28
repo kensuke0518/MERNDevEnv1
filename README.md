@@ -27,8 +27,8 @@ https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7
 
 
 ## 各フォルダとファイルの説明
-1. `/docs`
-本番公開用。`npm run build`で`/docs`用にファイルを生成する。
+1. `/docs`  
+本番公開用。`npm run build`で`/docs`用にファイルを生成する。    
 2. `/server`  
     バックエンド部分を担当する。Expressサーバー。次の業務を担当する。
     - MongoDBへの接続設定。`/server/models/itemModels.js`とMongooseで連携。
@@ -38,7 +38,7 @@ https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7
         1. `/server/models`
         - DB（MySQLなど）のテーブルの作成に相当する。`module exports`で全体で扱えるようにして`/server/routes/`内のファイル（例として`item.js`）から`module exports`されたモデルを利用してMongoDBへの読み書き（`post`や`get`, `put`, `delete`）を行う。
         2. `/server/routes`
-        - ルーター。ルーティングによるURL生成とCRUD部分を担う。
+        - ルーター。ルーティングによるURL生成とCRUD部分を担う。    
 3. `/src`  
     フロントエンド部分を担当する。HTMLやSass、React、Redux（状態管理）はここで行う。
     1. `/src/html`
@@ -46,7 +46,7 @@ https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7
     `/docs/index.html`などを編集したい場合はここから変更を行う。  
     2. `/src/js`
     React、Reduxを担当する。  
-    バックエンドからDB（API？）をfetchなどで読み書きを行う。  
+    バックエンドからDB（API？）をfetchなどで読み書きを行う。    
 
 
 
