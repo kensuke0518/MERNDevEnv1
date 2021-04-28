@@ -15,6 +15,7 @@ MERNスタック（MongoDB, Express, React, Node.js）開発環境の最小構�
     - バックエンドExpressサーバー。
         - `server.js`が担う。ポートは3000番。
     <br>
+    
     1. `/server/models`
         - DB（MySQLなど）のテーブルの作成に相当する。`module exports`で全体で扱えるようにして`/server/routes/`内のファイル（例として`item.js`）から`module exports`されたモデルを利用してMongoDBへの読み書き（`post`や`get`, `put`, `delete`）を行う。
     2. `/server/routes`
