@@ -2,14 +2,40 @@
 MERNスタック（MongoDB, Express, React, Node.js）開発環境の最小構成です。  
 状態管理にReduxを用いています。
 
+## 各フォルダとファイルの説明
+1. `/docs`  
+    本番公開用。`npm run build`で`/docs`用にファイルを生成する。
+2. `/server`  
+    バックエンド部分を担当する。Expressサーバー。次の業務を担当する。  
+    以下の内容は`server.js`に集約される事になる  
+    - MongoDBへの接続設定。
+        - `/server/models/itemModels.js`とMongooseで連携。
+    - ルーティング。
+        - `/server/routes/`内のファイルがルーターとなる。
+    - バックエンドExpressサーバー。
+        - `server.js`が担う。ポートは3000番。
+    1. `/server/models`
+        - DB（MySQLなど）のテーブルの作成に相当する。`module exports`で全体で扱えるようにして`/server/routes/`内のファイル（例として`item.js`）から`module exports`されたモデルを利用してMongoDBへの読み書き（`post`や`get`, `put`, `delete`）を行う。
+    2. `/server/routes`
+        - ルーター。ルーティングによるURL生成とCRUD部分を担う。
+3. `/src`  
+    フロントエンド部分を担当する。HTMLやSass、React、Redux（状態管理）はここで行う。
+    1. `/src/html`
+    webpackの「`html-webpack-plugin`」によって`/docs`にファイルが生成される  
+    `/docs/index.html`などを編集したい場合はここから変更を行う。  
+    2. `/src/js`
+    React、Reduxを担当する。  
+    バックエンドからDB（API？）をfetchなどで読み書きを行う。
+
 ## Reduxについて
 ### Reduxの流れ
 イベントが発生する（入力など）  
-イベントの処理中にdispatchを実行する。
+↓  
+イベントの処理中にdispatchをReact内でアクションクリエイターを引数にして実行
 ↓  
 アクションクリエイターに値が渡されて、アクションのオブジェクトを返す  
 ↓  
-dispatchしたことでレデューサーが呼び出され、ステートと先ほどのアクションオブエジェクトを引数にして実行し、ステートを変更する。  
+アクションからレデューサーが呼び出され、ステートと先ほどのアクションオブエジェクトを引数にして実行し、ステートを変更する。  
 ↓  
 ステートが変更されたことにより、コンポーネントが再描画される。  
 
@@ -24,33 +50,6 @@ https://docs.google.com/spreadsheets/d/1xPQ7nLVP4uDpM4nJe9GhTpDhra0xzWnK42NK52oi
 
 参考：  
 https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7  
-
-
-## 各フォルダとファイルの説明
-1. `/docs`  
-本番公開用。`npm run build`で`/docs`用にファイルを生成する。
-
-
-2. `/server`  
-    バックエンド部分を担当する。Expressサーバー。次の業務を担当する。
-    - MongoDBへの接続設定。`/server/models/itemModels.js`とMongooseで連携。
-    - ルーティング。`/server/routes/`内のファイルがルーターとなる。
-    - バックエンドExpressサーバー。ポートは3000番。
-    - 以上の内容は`server.js`に集約される事になる
-        1. `/server/models`
-        - DB（MySQLなど）のテーブルの作成に相当する。`module exports`で全体で扱えるようにして`/server/routes/`内のファイル（例として`item.js`）から`module exports`されたモデルを利用してMongoDBへの読み書き（`post`や`get`, `put`, `delete`）を行う。
-        2. `/server/routes`
-        - ルーター。ルーティングによるURL生成とCRUD部分を担う。    
-3. `/src`  
-    フロントエンド部分を担当する。HTMLやSass、React、Redux（状態管理）はここで行う。
-    1. `/src/html`
-    webpackの「`html-webpack-plugin`」によって`/docs`にファイルが生成される  
-    `/docs/index.html`などを編集したい場合はここから変更を行う。  
-    2. `/src/js`
-    React、Reduxを担当する。  
-    バックエンドからDB（API？）をfetchなどで読み書きを行う。    
-
-
 
 ## 使い方
 1. npm scriptsの`npm run dev`で開発環境が走る。
