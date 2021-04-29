@@ -5,8 +5,11 @@ MERNスタック（MongoDB, Express, React, Node.js）開発環境の最小構�
 
 ## 使い方
 1. `npm ci`でパッケージをインストール。
-2. npm scriptsの`npm run dev`で開発環境が走る。
-3. フロントエンドサーバーとバックエンドサーバーの両方にアクセスして、表示されるか確認。
+2. DBを起動する。DBフォルダを`/Users/ユーザーの名前〇〇/Documents/ProgrammingTest/project/__dbfolder/`内の任意の場所に作成する。
+    - ターミナルをもう一つ開き、次のコマンドを起動する。
+    - `sudo mongod --dbpath /Users/ユーザーの名前〇〇/Documents/ProgrammingTest/project/__dbfolder/任意で作成したフォルダ名`
+3. npm scriptsの`npm run dev`で開発環境が走る。
+4. フロントエンドサーバーとバックエンドサーバーの両方にアクセスして、表示されるか確認。
     - http://localhost:8080/  
     ↑ フロントエンドサーバー（`webpack-dev-server`）フロントエンド開発時に利用。  
     - http://localhost:3000/  
@@ -14,22 +17,18 @@ MERNスタック（MongoDB, Express, React, Node.js）開発環境の最小構�
     - http://localhost:8080/api/  
     ↑ `server/server.js`でルーティングしているページ。  
     `{"message":"こんにちは、世界"}`が表示されているか  
-7. DBを起動する。DBフォルダを任意の場所に作成する。
-    - ターミナルをもう一つ開き、次のコマンドを起動する。
-    - `sudo mongod --dbpath /Users/morinagakensuke/Documents/ProgrammingTest/project/__dbfolder/任意で作成したフォルダ名`
-8. DBモデルはすでに`server/models/itemModel.js`に作成してある。
+5. DBモデルはすでに`server/models/itemModel.js`に作成してある。
     - DBモデル参考：https://qiita.com/ngmr_mo/items/73cc7160d002a4989416#model%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%BD%9C%E6%88%90
-9. POSTしてデータが記録されるか確認する。  
+6. POSTしてデータが記録されるか確認する。  
     - http://localhost:8080/  にアクセスして `Hello, World`を入力し、追加ボタンを押す  
     - 追加したデータが表示されていればOK  
-    - ターミナルをもう一つ開き、curlで下記のコマンドを実行する。  
     ※curlコマンドでもサーバーにデータを送ることができる。覚えておくと役立つ。  
-    例：`curl -X POST -H "Content-Type: application/json" -d '{"name":"名前のデータです。", "category":"カテゴリーのデータです。", "price":"1234567890"}' localhost:3000/api/item/`  
+    例：`curl -X POST -H "Content-Type: application/json" -d '{"comment":"コメントのデータです。"}' localhost:3000/api/item/`  
     - http://localhost:8080/api/item/  
     ↑ バックエンドからフロントエンドへプロクシを繋いでCORS問題が解消されているか確認。  
-    `[{"_id":"6089a22dde8bb67208432f77","comment":"Hello, World","__v":0}]`と表示されていればOK  
-    - `curl http://localhost:8080/api/item | jq .`を実行して`Hello, World`を含むJSONオブジェクトが表示されていればOK  
-11. 完了。※あとは、React.jsやJavaScriptでSPAを構築する作業を行う。
+    `[{"_id":"〇〇","comment":"Hello, World","__v":0}]`と表示されていればOK  
+    - `curl http://localhost:8080/api/item | jq .`を実行して`Hello, World`を含むJSONオブジェクトが表示されていればOK。（"_id"部分は適当な数字でいい）  
+7. 完了。※あとは、React.jsやJavaScriptでSPAを構築する作業を行う。
 
 
 ## 各フォルダとファイルの説明
@@ -114,7 +113,13 @@ https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7
 Reactは、ステートを利用して、ステートに変更があれば、その差分のみを再描画することができる。 
 
 
-## プロジェクト別
+## 技術スタック
+- React
+- Redux
+- MongoDB
+- Expressサーバー
+- webpack-dev-server（開発時。ProxyでExpressサーバーと繋ぐ。webpack.config.dev.js）
+- Babel
 
 
 ## 参考元
